@@ -1,3 +1,6 @@
+# A deterministic finite automata that will go through a cycle to tell you if a string is true or false
+# Only one correct string for this configuration
+
 NUM_STATES = 6
 
 states = ['q' + str(i) for i in range(NUM_STATES)]
