@@ -33,17 +33,26 @@ transitionFunction = {
 initialState = 0
 finalStates = [4]
 
-currentState = initialState
+# Output the Details
+print("States = [" + ", ".join(states) + "]\n")
+print("State | " + "  | ".join(transitionFunction.get(0)))
+for i, state in enumerate(states):
+    destinations = list(transitionFunction.get(i).values())
+    print(state + "    | " + " | ".join([states[x] for x in destinations]))
 
-print("Initial State: " + states[currentState])
+print("\nInitial State: " + states[initialState])
 
-str = input("Enter a string to test: ")
+word = input("\nEnter a string to test(type quit to quit): ")
+while word != "quit":
+    currentState = initialState
+    # Determine the Path
+    path = [states[initialState]]
+    for letter in word:
+        currentState = transitionFunction[currentState][letter]
+        path.append(states[currentState])
+    print("->".join(path))
 
-path = []
+    print(currentState in finalStates)
 
-for letter in str:
-    currentState = transitionFunction[currentState][letter]
-    path.append(states[currentState])
-print("->".join(path))
-
-print(currentState in finalStates)
+    # Get the input
+    word = input("\nEnter a string to test(type quit to quit): ")
